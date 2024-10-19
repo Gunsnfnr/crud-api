@@ -7,8 +7,14 @@ const port = 8000;
 const requestListener = function (req, res) {
   console.log("req.url: ", req.url);
   console.log("req.method: ", req.method);
-  res.writeHead(200);
-  res.end("My server is on");
+  if (req.url === "/api/users" && req.method === "GET") {
+    res.setHeader("Content-Type", "application/json");
+    res.writeHead(200);
+    res.end(JSON.stringify(users));
+  } else {
+    res.writeHead(200);
+    res.end("My server is on");
+  }
 };
 
 const server = http.createServer(requestListener);
