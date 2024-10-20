@@ -3,6 +3,7 @@ import http, { IncomingMessage, ServerResponse } from 'http';
 import { handleGet } from './get';
 import { handlePost } from './post';
 import { handleDelete } from './delete';
+import { handlePut } from './put';
 
 const host = 'localhost';
 const port = Number(process.env.PORT);
@@ -15,12 +16,15 @@ const requestListener = function (req: IncomingMessage, res: ServerResponse) {
     case 'POST':
       handlePost(req, res);
       break;
+    case 'PUT':
+      handlePut(req, res);
+      break;
     case 'DELETE':
       handleDelete(req, res);
       break;
     default:
-      res.writeHead(400);
-      res.end('Server is on. With ability to handle GET, POST, DELETE requests.');
+      res.writeHead(405);
+      res.end('Method Not Allowed. Server is able to handle GET, POST, PUT, DELETE requests.');
   }
 };
 

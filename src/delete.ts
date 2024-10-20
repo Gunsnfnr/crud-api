@@ -9,7 +9,7 @@ const handleDelete = (req: IncomingMessage, res: ServerResponse) => {
 
     if (uuidValidate(userId)) {
       const indexOfUserInDB = getIndexInArray(userId);
-      if (indexOfUserInDB) {
+      if (indexOfUserInDB || indexOfUserInDB === 0) {
         users.splice(indexOfUserInDB, 1);
         res.writeHead(204);
         res.end();
