@@ -1,12 +1,23 @@
 import { IncomingMessage, ServerResponse } from 'http';
 import { User, users } from './users';
 import { v4 as uuidv4 } from 'uuid';
+import isArrayOfStrings from './utils/is-array-of-strings';
 
 const handlePost = (req: IncomingMessage, res: ServerResponse) => {
   if (req.url && (req.url === '/api/users' || req.url === '/api/users/')) {
     req.on('data', (chunck: Buffer) => {
       try {
         const userData: User = JSON.parse(chunck.toString());
+        if (
+          typeof userData.age !== 'number' ||
+          typeof userData.username !== 'string' ||
+          !Array.isArray(userData.hobbies) ||
+          !isArrayOfStrings(userData.hobbies)
+        ) {
+          res.writeHead(400);
+          res.end('Incorrect data type provided.');
+          return false;
+        }
 
         const newUser: User = {
           id: uuidv4(),
