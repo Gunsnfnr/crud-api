@@ -13,6 +13,7 @@
   "author": "Artyom P",
   "license": "ISC",
   "devDependencies": {
+    "@types/uuid": "^10.0.0",
     "nodemon": "^3.1.7",
     "prettier": "3.3.3",
     "ts-loader": "^9.5.1",
