@@ -1,10 +1,8 @@
-export default function isArrayOfStrings(data: string[]): boolean {
-  let result = true;
-  for (let i = 0; i < data.length; i += 1) {
-    if (typeof data[i] !== 'string') {
-      result = false;
-      return result;
+export default function isArrayOfStrings(arr: string[]): boolean {
+  for (let i = 0; i < arr.length; i += 1) {
+    if (typeof arr[i] !== 'string') {
+      return false;
     }
   }
-  return result;
+  return true;
 }
