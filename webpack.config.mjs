@@ -1,5 +1,6 @@
 import path from 'path';
 import { fileURLToPath } from 'url';
+import DotenvWebpackPlugin from 'dotenv-webpack';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -20,6 +21,11 @@ const config = {
     filename: 'bundle.js',
     path: path.resolve(__dirname, 'dist'),
   },
+  plugins: [
+    new DotenvWebpackPlugin({
+      systemvars: true,
+    }),
+  ],
 };
 
 export default config;

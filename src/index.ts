@@ -1,10 +1,10 @@
+import 'dotenv/config';
 import http, { IncomingMessage, ServerResponse } from 'http';
-
 import { handleGet } from './get';
 import { handlePost } from './post';
 
 const host = 'localhost';
-const port = 8080;
+const port = Number(process.env.PORT);
 
 const requestListener = function (req: IncomingMessage, res: ServerResponse) {
   if (req.method === 'GET') {
